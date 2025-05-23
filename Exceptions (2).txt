@@ -1,0 +1,87 @@
+Exceptions & Exception Handling:
+======================
+1) What is Exception?
+2) CheckedException vs UncheckedException?
+3) Exception class heirarchy diagram
+4) 5 clauses of Exceptions
+	throw, throws, try, catch, finally block
+		- throw raises exception
+		- throws reports exception
+		- try monitors exception
+		- catch handles exception
+		- finally is the block that executes at the end of the method exception
+5) Programs on predefined exceptions handling
+6) How to write, throw and catch our own/user defined exceptions
+
+
+1) What is Exception?
+An abnormal condition raised in the program is expressed as Exception.
+For instance 
+	- accessing array index beyond its boundary - ArrayIndexOutOfBoundsException
+	- trying to access non-existing file - FileNotFoundException
+	divided by zero - ArithmeticException
+	- "25 " trying to convert String to int - NumberFormatException
+	- Thread.sleep(1000) - pause the program execution for 1 sec, if the program doesn't resume after 1 sec then InterruptedException comes
+	- Thread priority must be given between 1 to 10, if priority given below 1 or above 10 causes IllegalArgumentException
+	- In the Socket programming if wrong hostname is given - UnknownHostException
+	
+2) CheckedException vs UncheckedException?
+Compile time detected Exception/Runtime detected Exception
+Exceptions are always raises at runtime, 
+	but some runtime raised exceptions are detected at compile time such exceptions are called as CheckedExceptions
+	some exceptions raised at runtime cannot be detected at compile time, hence they cause at runtime are called as UncheckedExceptions
+
+Unchecked exceptions are caused by user given input wrong / developer given input/data wrong / logic written wrong. Such exceptions are raised at runtime, program abnormally terminates, developer must experience such runtime exceptions and must handle exceptions in the next programs.
+
+Whereas CheckExceptions are informed by the java methods and constructors when used in the program. 
+For examples in the 
+	FileInputStream fis=new FileInputStream("student.txt");
+	FileInputStream class constructor will inform compiler to tell developer to handle FileNotFoundException when FileInputStream class constructor is used. If developer doesnt handle FileNotFoundException, compiler will not compile .java file into .class file
+	
+	Similarly when Thread.sleep(1000) is used, the method forces us to handle InterruptedException, if not handled the program will not be compiled.
+
+3) Exception class heirarchy diagram
+											Object
+												|
+											Throwable
+												|
+				----------------------------------------------
+					|												|
+				Error										Exception
+																|
+															InterruptedException
+															IOException
+																EOFException
+																UnknownHostException
+															SocketException
+															FileNotFoundException
+															RuntimeException
+																ArrayIndexOutOfBoundsException
+																IllegalArgumentException
+																	NumberFormatException
+																	
+classes derived from Exception class are called as CheckExceptions and classes derived from RuntimeException are called as UncheckedException.
+
+// UCExceptionsDemo.java
+class UCExceptionsDemo {
+	public static void main(String rags[]) {
+		int i[]={1,2,3,4,5};
+		try {	
+			for(int j=0;j<=i.length;j++) {
+				System.out.println(i[j]);
+			}
+		} catch(ArrayIndexOutOfBoundsException e1) {
+				// e1.printStackTrace();
+		}	
+		
+		try {
+			int a=10, b=0,c=0;
+			c=a/b;
+			System.out.println(c);
+		} catch(ArithmeticException e2) {
+			// e2.printStackTrace();
+		}	
+			
+		System.out.println("Statement at the end of the method");
+	}
+}											

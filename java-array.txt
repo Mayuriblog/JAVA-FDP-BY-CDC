@@ -1,0 +1,265 @@
+Arrays – Single and Multi-dimensional Arrays, Jagged Arrays, Arrays Class, Final Arrays
+
+Methods in Java Array Class – asList(), copyOf(), deepEquals(), equals(), fill(), sort(), toString(), deepToString(), mismatch()
+
+
+
+1. Demonstrate a 2D jagged array such that first row has 1 element, second row has two elements and so on.
+2. Copy the elements of an array into a new array of the specified new length.
+3. Compare two arrays of objects to check if they are deeply equal.
+4. Compare two arrays to check if they are equal.
+5. Fill an entire array or a subrange of an array with a specific value.
+6. Find the index of the first mismatched element between two arrays.
+7. Convert an array into a human-readable string representation.
+
+//jagged array
+A jagged array in Java is essentially an array of arrays, where each "row" array can have a different length. This is useful when your data has uneven dimensions.
+
+Jagged arrays are especially useful when each row needs to hold different number 
+of elements (e.g., triangle data, ragged matrices).
+
+Java does not enforce rectangular arrays in multi-dimensional arrays.
+
+public class JaggedArrayExample 
+{
+    public static void main(String[] args) 
+	{
+        // Declare a 2D jagged array
+        int[][] jaggedArray = new int[3][];
+        
+        // Initialize each row with different lengths
+        jaggedArray[0] = new int[2]; // Row 0 has 2 elements
+        jaggedArray[1] = new int[4]; // Row 1 has 4 elements
+        jaggedArray[2] = new int[3]; // Row 2 has 3 elements
+
+        // Assigning values
+        jaggedArray[0][0] = 1;
+        jaggedArray[0][1] = 2;
+
+        jaggedArray[1][0] = 3;
+        jaggedArray[1][1] = 4;
+        jaggedArray[1][2] = 5;
+        jaggedArray[1][3] = 6;
+
+        jaggedArray[2][0] = 7;
+        jaggedArray[2][1] = 8;
+        jaggedArray[2][2] = 9;
+        // Printing the jagged array
+        for (int i = 0; i < jaggedArray.length; i++) 
+		{
+            for (int j = 0; j < jaggedArray[i].length; j++) 
+			{
+                System.out.print(jaggedArray[i][j] + " ");
+            }
+            System.out.println(); // Newline after each row
+        }
+    }
+}
+public class JaggedArraySumExample 
+{
+    public static void main(String[] args) 
+	{
+        // Inline initialization of a jagged array
+        int[][] jaggedArray = {
+            {10, 20},
+            {30, 40, 50},
+            {60},
+            {70, 80, 90, 100}
+        };
+        // Print the jagged array and calculate row sums
+        for (int i = 0; i < jaggedArray.length; i++) 
+		{
+            int sum = 0;
+            System.out.print("Row " + i + ": ");
+            for (int j = 0; j < jaggedArray[i].length; j++) 
+			{
+                System.out.print(jaggedArray[i][j] + " ");
+                sum += jaggedArray[i][j];
+            }
+            System.out.println(" | Sum = " + sum);
+        }
+    }
+}
+
+
+public class JaggedCharArrayExample 
+{
+    public static void main(String[] args) 
+	{    // Jagged array of characters (each sub-array represents a word)
+        char[][] words = 
+		{
+            {'J', 'a', 'v', 'a'},
+            {'i', 's'},
+            {'f', 'u', 'n'},
+            {'!', '!', '!'}
+        };
+        // Print each word
+        for (int i = 0; i < words.length; i++)
+		{
+            System.out.print("Word " + (i + 1) + ": ");
+            for (int j = 0; j < words[i].length; j++) 
+			{
+                System.out.print(words[i][j]);
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+
+1. asList()
+
+import java.util.Arrays;
+import java.util.List;
+
+public class AsListExample {
+    public static void main(String[] args) {
+        String[] fruits = {"apple", "banana", "cherry"};
+        List<String> list = Arrays.asList(fruits);
+        System.out.println("List: " + list);
+    }
+}
+
+
+🔹 2. copyOf()
+
+
+import java.util.Arrays;
+
+public class CopyOfExample {
+    public static void main(String[] args) {
+        int[] original = {1, 2, 3, 4};
+        int[] copy = Arrays.copyOf(original, original.length);
+        System.out.println("Copy: " + Arrays.toString(copy)); // extra elements = 0
+    }
+}
+
+
+🔹 3. deepEquals()
+
+import java.util.Arrays;
+
+public class DeepEqualsExample 
+{
+    public static void main(String[] args) 
+	{
+        String[][] a1 = {{"a", "b"}, {"c"}};
+        String[][] a2 = {{"a", "b"}, {"c"}};
+        System.out.println("Deep Equals: " + Arrays.deepEquals(a1, a2));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+🔹 4. equals()
+import java.util.Arrays;
+
+public class EqualsExample 
+{
+    public static void main(String[] args) 
+	{
+        int[] a1 = {1, 2, 3};
+        int[] a2 = {1, 2, 3};
+        System.out.println("Equals: " + Arrays.equals(a1, a2));
+    }
+}
+
+
+
+
+
+
+
+
+🔹 5. fill()
+
+import java.util.Arrays;
+
+public class FillExample
+ {
+    public static void main(String[] args) 
+	{
+        int[] array = new int[5];
+        Arrays.fill(array, 42);
+        System.out.println("Filled Array: " + Arrays.toString(array));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+🔹 6. sort()
+
+import java.util.Arrays;
+
+public class SortExample 
+{
+    public static void main(String[] args) 
+	{
+        int[] numbers = {5, 2, 9, 1};
+        Arrays.sort(numbers);
+        System.out.println("Sorted Array: " + Arrays.toString(numbers));
+    }
+}
+
+
+
+🔹 7. toString()
+
+import java.util.Arrays;
+
+public class ToStringExample
+ {
+    public static void main(String[] args) 
+	{
+        int[] array = {1, 2, 3};
+        System.out.println("Array as String: " + Arrays.toString(array));
+    }
+}
+
+
+
+
+🔹 8. deepToString()
+
+import java.util.Arrays;
+
+public class DeepToStringExample
+ {
+    public static void main(String[] args) 
+	{
+        String[][] matrix = {{"a", "b"}, {"c", "d"}};
+        System.out.println("Deep ToString: " + Arrays.deepToString(matrix));
+    }
+}
+
+
+
+🔹 9. mismatch()
+
+import java.util.Arrays;
+
+public class MismatchExample {
+    public static void main(String[] args) {
+        int[] a1 = {1, 2, 3, 4};
+        int[] a2 = {1, 2, 0, 4};
+        int mismatchIndex = Arrays.mismatch(a1, a2);
+        System.out.println("Mismatch Index: " + mismatchIndex);  // Output: 2
+    }
+}
